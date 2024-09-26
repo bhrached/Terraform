@@ -29,7 +29,7 @@ Suivez les étapes ci-dessous pour configurer et démarrer l'architecture :
 
 ### 1\. Cloner le projet
 
-    git clone https://github.com/votre-repo/terraform-project.git
+    git clone https://github.com/bhrached/Terraform.git
 
 ### 2\. Configurer les VM avec Vagrant
 
@@ -37,7 +37,7 @@ Le projet inclut un `Vagrantfile` pour chaque machine virtuelle, y compris une V
 
 Pour démarrer les machines WordPress, GitLab, Jenkins et Ansible, utilisez le Vagrantfile dans le répertoire `vagrant` :
 
-    cd terraform-project/vagrant
+    cd terraform/vagrant_terraform
     vagrant up
 
 Cette commande créera et démarrera les machines virtuelles définies dans le `Vagrantfile`.
@@ -46,7 +46,7 @@ Cette commande créera et démarrera les machines virtuelles définies dans le `
 
 Le projet inclut un `Vagrantfile` séparé pour la machine virtuelle dédiée à Terraform. Pour démarrer cette VM, suivez ces étapes :
 
-    cd terraform-project/terraform-vm
+    cd terraform/vagrant_terraform
     vagrant up
 
 Cela va créer et provisionner une VM où Terraform sera installé automatiquement.
