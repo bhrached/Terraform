@@ -1,0 +1,40 @@
+Vagrant.configure("2") do |config|
+    # Configuration de la VM pour Terraform
+    config.vm.define "terraform" do |terraform|
+      terraform.vm.box = "ubuntu/bionic64"
+      terraform.vm.hostname = "terraform.local"
+      terraform.vm.network "private_network", ip: "192.168.33.14"
+      terraform.vm.network "forwarded_port", guest: 8080, host: 8070
+      
+      terraform.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+        vb.cpus = 1
+      end
+      
+      terraform.vm.synced_folder "../", "/vagrant"
+
+      # Provisionnement pour installer Terraform
+      terraform.vm.provision "shell", inline: <<-SHELL
+        # Mise à jour du système
+        sudo apt-get update
+        sudo apt-get upgrade -y
+  
+        # Installation de dépendances
+        sudo apt-get install -y unzip wget
+  
+        # Téléchargement et installation de Terraform
+        TERRAFORM_VERSION="1.3.6" # Remplace par la version souhaitée
+        wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+        rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+  
+        # Vérification de l'installation
+        terraform version
+      SHELL
+    end
+  end
+
+  #export TF_LOG=DEBUG
+  #terraform init -upgrade
+  
