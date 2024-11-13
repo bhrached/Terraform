@@ -10,6 +10,26 @@ Vagrant.configure("2") do |config|
 
     # Hostname
     ansible.vm.hostname = "ansible-controller"
+    
+    # Synced folder (share the folder containing the Vagrantfile)
+    ansible.vm.synced_folder "../", "/vagrant"
+
+    # Provisioner - Install Ansible
+    ansible.vm.provision "shell", inline: <<-SHELL
+      # Créer le répertoire pour les clés privées
+      #mkdir -p /home/vagrant/private_keys
+      # Copier les clés privées depuis l'hôte
+      #cp /vagrant/Vagrant_Apps/.vagrant/machines/jenkins/virtualbox/private_key /home/vagrant/private_keys/jenkins_private_key
+      #cp /vagrant/Vagrant_Apps/.vagrant/machines/gitlab/virtualbox/private_key /home/vagrant/private_keys/gitlab_private_key
+      #cp /vagrant/Vagrant_Apps/.vagrant/machines/wordpress/virtualbox/private_key /home/vagrant/private_keys/wordpress_private_key
+      sudo apt-get update
+      sudo apt-get install -y software-properties-common
+      sudo apt-add-repository --yes --update ppa:ansible/ansible
+      sudo apt-get install -y ansible
+      #chmod 755 ../Logs
+      #touch ../Logs/ansible.log
+      #chmod 644 ../Logs/ansible.log
+    SHELL
   end
 end
 
