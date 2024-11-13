@@ -1,0 +1,26 @@
+# Dossier de cache créé par Vagrant
+.vagrant/*
+
+# Ignorer tous les fichiers de log
+*.log
+
+# Terraform executables
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
+
+# Binary files
+*.tfplan
+
+# Dossier de cache créé par Terraform
+.terraform/
+
+# Fichiers temporaires générés par IDE ou outils
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Fichiers locaux pour variables environnementales
+.env
