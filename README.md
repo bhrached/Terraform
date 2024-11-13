@@ -70,6 +70,7 @@ Pour exécuter les configurations Terraform, connectez-vous à la VM Terraform e
     Vérifier la configuration (facultatif) : terraform validate
     Planifier les modifications : terraform plan (ajouter l'option -out pour enrgistrer le plan exemple -out=tfplan)
     Appliquer les modifications : terraform apply (ajouter le nom du plan si vosu l'avez engistrer avec plan exemple : terraform apply tfplan)
+    Supprimer un plan : rm tfplan
     Vérifier l'état des ressources : terraform show
     Détruire l'infrastructure : terraform destroy
 
